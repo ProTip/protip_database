@@ -93,7 +93,6 @@ class Chef
           :kind_of => [ TrueClass, FalseClass ], :default => false
         )
       end
-
     end
   end
 end

@@ -92,6 +92,7 @@ class Chef
         def db
           @db ||= begin
             ::TinyTds::Client.new(
+              :dataserver => @new_resource.connection[:dataserver] || nil,
               :host => @new_resource.connection[:host],
               :username => @new_resource.connection[:username],
               :password => @new_resource.connection[:password],
