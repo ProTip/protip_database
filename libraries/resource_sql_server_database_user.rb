@@ -25,7 +25,7 @@ class Chef
 
       def initialize(name, run_context=nil)
         super
-        @sql_roles = []
+        @sql_roles = {}
         @resource_name = :sql_server_database_user
         @provider = Chef::Provider::Database::SqlServerUser
         @allowed_actions.push(:alter_roles)
@@ -37,7 +37,7 @@ class Chef
       set_or_return(
           :sql_roles,
           arg,
-          :kind_of => Array
+          :kind_of => Hash
       )
     end
   end
