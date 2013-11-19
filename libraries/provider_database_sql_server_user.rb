@@ -92,7 +92,7 @@ class Chef
             Chef::Application.fatal!('Please provide a database_name, SQL Server does not support global GRANT statements.') unless @new_resource.database_name
             db.execute("USE [#{@new_resource.database_name}]").do
             @new_resource.sql_roles.each do | sql_role, role_action |
-              alter_statement = "ALTER ROLE [#{sql_role}] #{role_action} MEMBER [#{@new_resource.username}]"
+              alter_statement = "SET CONCAT_NULL_YIELDS_NULL ON; ALTER ROLE [#{sql_role}] #{role_action} MEMBER [#{@new_resource.username}]"
               Chef::Log.info("#{@new_resource} granting access with statement [#{alter_statement}]")
               db.execute(alter_statement).do
             end
